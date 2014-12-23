@@ -1,0 +1,11 @@
+{% extends 'otu/base.html' %}
+{% block title %}{{ dream.title }}{% endblock %}
+{% block body_block %}
+    <h2 class="dream_title">{{ dream.title }}</h2>
+    <div class="dream_date">dreamed {{ dream.dream_date }}</div>
+    {{ dream.content }}
+{% endblock %}
+
+{% block sidebar %}
+   {% include 'otu/sidebar.html' %}
+{% endblock %}

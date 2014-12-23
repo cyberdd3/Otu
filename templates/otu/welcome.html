@@ -1,0 +1,40 @@
+{% extends 'otu/base.html' %}
+{% block title %}Welcome to the Land of Ooo {% endblock %}
+{% block head %}
+    <div class="row">
+        <div class="col col-sm-5">
+            <form action="." method="post" name="register_form">
+            <div class="input-group">
+                 <span class="input-group-addon">@</span>
+                <input name="e-mail" type="text" class="form-control" placeholder="E-mail">
+            </div>
+
+            <div class="input-group">
+                <input name="password" type="text" class="form-control" placeholder="Password">
+
+            </div>
+
+            <div class="input-group">
+                <input name="password" type="text" class="form-control" placeholder="Confirm Password">
+            </div>
+
+            </form>
+        </div>
+        <div class="col col-sm-7">
+            <form action="." method="post" name="login_form">
+                {% if error_msg %}
+                    <p>{{ error_msg }}</p>
+                {% endif %}
+                {% csrf_token %}
+                <div class="field-wrapper">
+                    email: <input type="text" name="email" value="" size="75"/><br/>
+                    password <input type="password" name="password" value="" size="75"/>
+                </div>
+
+                <div class="submit-wrapper">
+                    <input type="submit" value="Sign in"/>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

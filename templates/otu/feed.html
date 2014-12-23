@@ -1,0 +1,64 @@
+{% extends 'otu/base.html' %}
+
+{% block title %}Feed{% endblock %}
+
+{% block body_block %}
+ {% for post in posts %}
+                <div class="well" id="post_{{ post.pk }}">
+                    <div class="post_content">
+                        <p id="name">
+                            <a href="/profile/{{ post.user.pk }}/">
+                                <img src="/media/avatars/{{ user_data.pk }}_small.jpg"/>
+                                {{ post.user.first_name }} {{ post.user.last_name }}</a>
+                        </p>
+
+                        <p> {{ post.content }}</p>
+
+                        <p class="timestamp"> {{ post.timestamp }}</p>
+                    </div>
+                </div>
+                <div class="comments well-sm">
+                    Comments:<br/>
+
+                    <div class="comments_list" id="comments_{{ post.pk }}">
+                        {% if post.comment_set %}
+                            {% for comment in post.comment_set.all %}
+                                <div class="comment" id="comment_{{ comment.pk }}">
+                                    <a href="/profile/{{ comment.user.pk }}/" class="user_name">
+                                        <img src="/media/avatars/{{ comment.user.pk }}_small.jpg"/>
+                                        {{ comment.user.first_name }} {{ comment.user.last_name }}</a>
+
+                                    <div class="comment_text">{{ comment.text }}</div>
+                                    <p class="timestamp">{{ comment.timestamp }}</p>
+
+
+                                    {% if comment.user == user %}
+                                        <textarea cols="40" class="edit_comment_field input-group" name="text"
+                                                  id="styled" rows="1" style="display:none"></textarea>
+                                        <button data-comment_id="{{ comment.pk }}"
+                                                class="edit_comment btn btn-default btn-xs" type="button">edit
+                                        </button>
+                                        <button data-comment_id="{{ comment.pk }}"
+                                                class="delete_comment btn btn-default btn-xs" type="button">x
+                                        </button><br/>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    Add comment:
+                    <div class="input-group">
+                        <input type="text" class="form-control comment_text">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default add_comment" type="button" data-post_id="{{ post.pk }}">
+                                    Comment
+                                </button>
+                            </span>
+                        <!-- /input-group -->
+
+
+                    </div>
+                </div>
+
+            {% endfor %}
+{% endblock %}

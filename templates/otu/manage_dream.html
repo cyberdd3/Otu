@@ -1,0 +1,93 @@
+{% extends 'otu/base.html' %}
+{% load static %}
+{% block title %}New dream{% endblock %}
+{% block body_block %}
+    <h3 class="col-sm-offset-2">New dream</h3>
+    <form class="form-horizontal" action="." method="post" enctype="multipart/form-data" data-parsley-validate>
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="inputTitle" class="col-sm-2 control-label required">Title</label>
+
+            <div class="col-sm-10">
+                <input type="text" name="title" class="form-control" id="inputTitle" data-parsley-required
+                       data-parsley-maxlength="100" value="{{ dream.title }}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputContent" class="col-sm-2 control-label required">Dream story</label>
+
+            <div class="col-sm-10">
+                <textarea name="content" class="form-control" id="inputContent" rows="8" data-parsley-required>{{ dream.content }}</textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="pickDreamDate" class="col-sm-2 control-label required">When dreamed</label>
+
+            <div class="col-sm-3">
+                <input type="text" name="dreamDate" id="pickDreamDate" class="form-control" value="{{ dream.dream_date }}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="checkLucid" class="col-sm-2 control-label">Lucid dream</label>
+            <div class="col-sm-10">
+                <input type="checkbox" name="lucidDream" id="checkLucid">
+                <div id="lucidStrengthArea">
+                    Lucid strength
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="selectChars" class="col-sm-2 control-label">Characters</label>
+            <div class="col-sm-10">
+                <input type="hidden" id="selectChars" />
+            </div>
+        </div>
+
+        <input type="hidden" name="pk" value="{{ dream.pk }}">
+
+        <div class="col-md-offset-2">
+            <button class="btn btn-primary" type="submit">Save</button>
+            {% if dream %}<button class="btn btn-danger" type="button" id="delete_dream" data-dream_pk="{{ dream.pk }}">Delete</button>{% endif %}
+        </div>
+    </form>
+{% endblock %}
+
+{% block sidebar %}
+   {% include 'otu/sidebar.html' %}
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/parsley.js' %}"></script>
+    <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+    <script src="{% static 'select2/select2.js' %}"></script>
+    <script>
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1;
+        var yyyy = today.getFullYear();
+
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+
+            mm = '0' + mm;
+        }
+        $('#pickDreamDate').val(dd + "/" + mm + "/" + yyyy).datepicker({format: "dd/mm/yyyy"});
+    </script>
+
+    <script>
+        $('#checkLucid').change(function() {
+            $('#lucidStrengthArea').slideToggle('fast');
+        });
+
+        $('#selectChars').select2();
+    </script>
+{% endblock %}
+
+{% block styles %}
+    <link href="{% static 'css/datepicker.css' %}" rel="stylesheet">
+    <link href="{% static 'select2/select2-bootstrap.css' %}" rel="stylesheet">
+{% endblock %}

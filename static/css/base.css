@@ -1,0 +1,198 @@
+
+.comments {
+    width: 40%;
+}
+.comment {
+    display: inline;
+
+}
+.timestamp {
+    color: #cccccc;
+    font-size: 12px;
+}
+.centered {
+    float:none;
+    margin-left: auto;
+    margin-right: auto;
+}
+#time, #name {
+    display: inline;
+}
+#info, #avatar {
+    display: inline;
+}
+#friends_list a,h3    {
+    display: inline;
+}
+.navbar-form input, .form-inline input {
+	width:auto;
+}
+
+/* end */
+
+/* custom theme */
+
+header {
+	min-height:230px;
+  	margin-bottom:5px;
+}
+
+@media (min-width: 979px) {
+  #sidebar.affix-top {
+      position: static;
+  }
+  
+  #sidebar.affix {
+      position: fixed;
+      top: 0;
+      width: 23%;
+  }
+}
+
+.affix,.affix-top {
+   position:static;
+}
+/* theme */
+
+body {
+  color:#828282;
+  background-color:#e0e6e7;
+  font-family: Helvetica;
+}
+
+a,a:hover {
+	color:#828282;
+  	text-decoration:none;
+}
+
+.highlight-bk {
+	background-color:#ff3333;
+    padding:1px;
+    width:100%;
+}
+
+.highlight {
+	color:#ff3333;
+}
+h3.highlight  {
+	padding-top:13px;
+    padding-bottom:14px;
+}
+
+.navbar {
+	background-color:#fff;
+  	color:#596a82;
+    border:0;
+  	border-radius:0;
+}
+.navbar-nav > li > a {
+  	color:#596a82;
+  	padding-left:10px;
+  	padding-right:10px;
+}
+.navbar-brand {
+    color: #ecf0f1;
+}
+
+.navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+    color: #ffffff;
+	background-color:transparent;
+}
+.navbar-nav > .open > a, .navbar-nav > .open > a:hover, .navbar-nav > .open > a:focus {
+	color: #555555;
+	background-color:transparent;
+  	opacity:.9;
+}
+
+.nav .open > a {
+    border-color:#777777;
+    border-width:0;
+}
+
+.accordion-group {
+	border-width:0;
+}
+
+.dropdown-menu {
+	min-width: 250px;
+}
+
+.accordion-heading .accordion-toggle, .accordion-inner, .nav-stacked li > a {
+	padding-left:1px;
+}
+
+.caret {
+	color:#fff;
+}
+
+.navbar-toggle {
+	color:#fff;
+    border-width:0;
+}
+  
+.navbar-toggle:hover {
+	background-color:#fff;
+}
+
+.panel {
+	padding-left:27px;
+    padding-right:27px;
+}
+
+.content {
+    width: 948px;
+    margin: auto;
+    position: relative;
+    text-align: left;
+}
+
+.main {
+    width: 690px;
+    background-color: #ffffff;
+    padding: 15px;
+    float: left;
+}
+
+.sidebar {
+    min-height: 1px;
+    margin-left: 20px;
+    width: 230px;
+    float: left;
+}
+
+
+h2.dream_title {
+    text-align: center;
+}
+
+.dream_date {
+    color: #a5adb5;
+    font-size: 85%;
+    text-align: center;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 999px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  background: red;
+  cursor: inherit;
+  display: block;
+}
+input[readonly] {
+  background-color: white !important;
+  cursor: text !important;
+}
+
+
+/* end theme */

@@ -1,0 +1,13 @@
+{% extends 'otu/base.html' %}
+{% block title %}Threads{% endblock %}
+{% block body_block %}
+    {% if thread_list %}
+    <ul>
+        {% for thread in thread_list %}
+        <li><a href="{% url 'thread' thread.id %}">{{ thread.name }}</a></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+
+{% endblock %}
