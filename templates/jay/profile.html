@@ -1,0 +1,15 @@
+{% extends 'jay/base.html' %}
+{% block title %} {{ user_data.profile.username }}{% endblock %}
+
+{% block body_block %}
+    <h3>Posts</h3>
+    {% if posts %}
+        {% include 'jay/post_list.html' %}
+    {% endif %}
+
+
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'jay/sidebar.html' %}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'jay/base.html' %}
+{% block title %}Settings{% endblock %}
+{% block head %}
+     <form action="." method="post">
+    {% csrf_token %}
+    {{ change_password_form.errors }}
+    {{ change_password_form.as_p }}
+    {% if changed %} <p>Changes saved.</p> {% endif %}
+    <div class="submit-wrapper">
+        <input type="submit" value="Save"/>
+    </div>
+    </form>
+{% endblock %}

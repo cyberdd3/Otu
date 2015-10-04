@@ -1,0 +1,19 @@
+{% extends 'jay/base.html' %}
+{% block title %}Followers{% endblock %}
+{% block body_block %}
+    {% if followers.count == 0 %}
+        No followers.
+    {% else %}
+        {{ followers.count }} {% if followers.count == 1 %}person is{% else %}people are{% endif %} following
+        {% if user_data == user %}you{% else %}{{ user_data.profile.username }}{% endif %}.
+    {% endif %}
+    {% if followers %}
+        {% with users=followers %}
+            {% include "jay/user_list.html" %}
+        {% endwith %}
+    {% endif %}
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'jay/sidebar.html' %}
+{% endblock %}

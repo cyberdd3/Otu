@@ -1,0 +1,40 @@
+{% extends 'jay/base.html' %}
+{% block title %}Chat{% endblock %}
+
+{% block extrahead %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            activate_chat({{ thread_id }}, "{{ user.username }}", {
+                "total": {{ messages_total }},
+                "sent": {{ messages_sent }},
+                "received": {{ messages_received }}
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block body_block %}
+    <div class="chat">
+    <div class="partner">
+        <p class="name">{{ partner.username }}</p>
+        <p class="messages"><span class="total">{{ messages_total }}</span> messages (<span class="received">{{ messages_received }}</span> received, <span class="sent">{{ messages_sent }}</span> sent)</p>
+    </div>
+    <div class="conversation">
+        {% for message in thread_messages reversed %}
+        <div class="message">
+            {% if message.sender == user %}<p class="author we"><span class="datetime">{{ message.datetime|date:"d.m.Y H:i:s" }}</span> {{ user.username }}:</p>{% else %}<p class="author partner"><span class="datetime">{{ message.datetime|date:"d.m.Y H:i:s" }}</span> {{ partner.username }}:</p>{% endif %}
+            <p class="message">{{ message.text|linebreaksbr }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    <form class="message_form">
+        <div class="compose">
+            <textarea rows="1" cols="30" id="message_textarea"></textarea>
+        </div>
+        <div class="send">
+            <button class="btn" type="button">Send</button>
+
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+<div class="navbar navbar-static">
+    <div class="container">
+        <a class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="glyphicon glyphicon-chevron-down"></span>
+        </a>
+
+        {% with auth=user.is_authenticated %}
+            <div class="nav-collapse collase">
+                <ul class="nav navbar-nav">
+                    <li><a class="navbar-brand" href="/">Jay</a></li>
+                    {% if auth %}
+                        <li><a href="/profile/">Profile</a></li>
+                        <li><a href="/feed/">Feed</a></li>
+                    {% endif %}
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if auth %}
+                        <li><img src="/media/avatars/{{ user.pk }}_small.jpg" class="img-responsive navbar-avatar"/>
+                        </li>
+                        <li><a href="/logout/">Log out</a></li>
+                    {% else %}
+                        <li><a href="/register/">Register</a></li>
+                        <li><a href="/login/">Sign in</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        {% endwith %}
+    </div>
+</div>

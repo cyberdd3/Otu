@@ -1,0 +1,35 @@
+<button class="btn btn-primary btn-block" style="margin-bottom: 10px;"
+        onclick="window.location='/manage_post/?action=add'"><strong>Today I...</strong></button>
+<div class="well">
+    {% with userdata=user_data|default:user %}
+        <img src="/media/avatars/{{ userdata.pk }}_med.jpg" class="img-responsive center-block"/>
+
+        <p class="text-center">
+            <span class="username">{{ userdata.profile.username }}</span>
+            <br>{{ userdata.profile.fullname }}
+        </p>
+
+
+        <div class="btn-group-vertical btn-block" id="user_menu">
+            {% if userdata == user %}
+                <button type="button" class="btn btn-link" onclick="window.location='/edit_profile'">Edit profile
+                </button>
+
+            {% elif is_following %}
+                <button type="button" class="btn btn-default" id="unfollow_btn" data-user-pk="{{ userdata.pk }}">
+                    Unfollow
+                </button>
+            {% else %}
+                <button type="button" class="btn btn-primary" id="follow_btn" data-user-pk="{{ userdata.pk }}">Follow
+                </button>
+            {% endif %}
+            <button type="button" class="btn btn-default">{{ userdata.post_set.count }} posts</button>
+            <button type="button" class="btn btn-default" id="following_btn"
+                    onclick="window.location='/following/{{ userdata.pk }}'">{{ userdata.profile.following.count }} following
+            </button>
+            <button type="button" class="btn btn-default" id="followers_btn"
+                    onclick="window.location='/followers/{{ userdata.pk }}'">{{ userdata.profile.followers.count }} followers
+            </button>
+        </div>
+    {% endwith %}
+</div>

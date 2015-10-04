@@ -1,0 +1,38 @@
+<div class="list-group">
+    {% for post in posts %}
+        <div class="list-group-item">
+            <div class="row post" id="post_{{ post.pk }}">
+                <div class="col-sm-1">
+                    <a href="/profile/{{ post.user.pk }}"><img src="/media/avatars/{{ post.user.pk }}_small.jpg"/></a>
+                </div>
+                <div class="col-sm-11">
+                    <div class="row" style="min-height: 25px">
+                        <div class="col-sm-10">
+
+                            <a href="/profile/{{ post.user.pk }}"><strong>{{ post.user.profile.username }}</strong></a>
+                            posted <a href="/post/{{ post.pk }}">{{ post.timestamp }}</a>
+                        </div>
+                        {% if post.user == user %}
+                            <div class="col-sm-2 pull-right edit_post" style="display:none">
+                                <div class="btn-group btn-group-xs">
+                                    <button type="button" class="btn btn-link edit_post"
+                                            onclick="window.location = '/manage_post?action=edit&pk={{ post.pk }}'">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-link delete_post"
+                                            data-post_pk="{{ post.pk }}">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <h4 class="post_title">{{ post.title }}</h4>
+                    {{ post.content }}
+                </div>
+            </div>
+        </div>
+
+
+    {% endfor %}
+</div>

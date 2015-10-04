@@ -1,0 +1,29 @@
+{% extends 'jay/base.html' %}
+{% load static %}
+{% block title %}Sign in {% endblock %}
+{% block body_block %}
+    <h3>Sign in to Jay</h3>
+    <form action="." method="post" id="login_form" data-parsley-validate>
+
+    {% csrf_token %}
+            <div class="input-group">
+        <input type="email" class="form-control" placeholder="E-mail" name="email" data-parsley-required data-parsley-type="email">
+    </div>
+
+
+    <div class="input-group">
+        <input class="form-control" placeholder="Password" type="password" name="password" data-parsley-required>
+        {% if error_msg %}
+        <div class="error_message">
+            {{ error_msg }}
+        </div>
+        {% endif %}
+    </div>
+        <input type="submit" value="Sign in" class="btn btn-primary" />
+    </form>
+{% endblock %}
+
+
+{% block scripts %}
+<script src="{% static 'js/parsley.js' %}"></script>
+{% endblock %}

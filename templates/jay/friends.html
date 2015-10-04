@@ -1,0 +1,36 @@
+{% extends 'jay/base.html' %}
+{% block body_block %}
+    <h3>{{ user_data.first_name }}'s Friends</h3>
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#friends" data-toggle="tab">Friends</a></li>
+        <li><a href="#requests" data-toggle="tab">Requests {% if requests %}({{ requests.count  }}){% endif %}</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane active" id="friends">
+            {% for friend in friends %}
+                {% for friend in friends %}
+                    <a href="/profile/{{ friend.user.pk }}">
+                        <img src="/media/avatars/{{ friend.user.pk }}_small.jpg"/>
+                        {{ friend.user.first_name }} {{ friend.user.last_name }}
+                    </a>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="tab-pane" id="requests">
+            {% for request in requests %}
+                {{ request.user.first_name }} {{ request.user.last_name }}
+                <button id="add_friend" data-username="{{ request.user.username }}"
+                                            class="btn btn-mini btn-primary" type="button">Add friend
+                                    </button>
+                                    <button id="decline_request" data-username="{{ request.user.username }}"
+                                            class="btn btn-mini btn-secondary" type="button">Decline request
+                                    </button>
+            {% endfor %}
+        </div>
+
+    </div>
+
+{% endblock %}

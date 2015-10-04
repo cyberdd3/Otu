@@ -1,0 +1,31 @@
+{% extends 'jay/base.html' %}
+{% load static %}
+{% block title %} Sign up {% endblock %}
+{% block body_block %}
+
+
+    <div class="row">
+    <div class="user-form col-md-8 col-md-offset-2">
+    <h3>Share what you come across everyday.</h3>
+
+    <form method="post" action="." id="register_form" data-parsley-validate>
+        {% csrf_token %}
+    <div class="input-group">
+        <input type="email" class="form-control" placeholder="E-mail" name="email" id="email_input" data-parsley-required data-parsley-type="email">
+    </div>
+
+
+    <div class="input-group">
+        <input class="form-control" placeholder="Password" type="password" name="password" data-parsley-required data-parsley-length="[6, 50]">
+    </div>
+        <input class="btn btn-primary" type="submit" value="Register" />
+    </form>
+        </div>
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/parsley.js' %}"></script>
+{% endblock %}
