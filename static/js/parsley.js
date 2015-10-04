@@ -1209,33 +1209,33 @@
     },
     // TODO: strange API here, intuitive for manual usage with addError(pslyInstance, 'foo', 'bar')
     // but a little bit complex for above internal usage, with forced undefined parametter..
-    addError: function (fieldInstance, name, message, assert, doNotUpdateClass) {
+    addError: function (fieldInstance, name, message, assert, doNpdateClass) {
       fieldInstance._ui.$errorsWrapper
         .addClass('filled')
         .append($(fieldInstance.options.errorTemplate)
         .addClass('parsley-' + name)
         .html(message || this._getErrorMessage(fieldInstance, assert)));
-      if (true !== doNotUpdateClass)
+      if (true !== doNpdateClass)
         this._errorClass(fieldInstance);
     },
     // Same as above
-    updateError: function (fieldInstance, name, message, assert, doNotUpdateClass) {
+    updateError: function (fieldInstance, name, message, assert, doNpdateClass) {
       fieldInstance._ui.$errorsWrapper
         .addClass('filled')
         .find('.parsley-' + name)
         .html(message || this._getErrorMessage(fieldInstance, assert));
-      if (true !== doNotUpdateClass)
+      if (true !== doNpdateClass)
         this._errorClass(fieldInstance);
     },
     // Same as above twice
-    removeError: function (fieldInstance, name, doNotUpdateClass) {
+    removeError: function (fieldInstance, name, doNpdateClass) {
       fieldInstance._ui.$errorsWrapper
         .removeClass('filled')
         .find('.parsley-' + name)
         .remove();
       // edge case possible here: remove a standard Parsley error that is still failing in fieldInstance.validationResult
       // but highly improbable cuz' manually removing a well Parsley handled error makes no sense.
-      if (true !== doNotUpdateClass)
+      if (true !== doNpdateClass)
         this.manageStatusClass(fieldInstance);
     },
     focus: function (formInstance) {

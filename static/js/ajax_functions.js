@@ -41,16 +41,16 @@ $(document).ready(function(){
         });
     });
 
-    body.on('mouseover', '.dream', function(e) {
-        $(this).find('.edit_dream').stop().fadeIn('fast');
+    body.on('mouseover', '.post', function(e) {
+        $(this).find('.edit_post').stop().fadeIn('fast');
     });
-    body.on('mouseout', '.dream', function(e) {
-        $(this).find('.edit_dream').stop().fadeOut('fast');
+    body.on('mouseout', '.post', function(e) {
+        $(this).find('.edit_post').stop().fadeOut('fast');
     });
     function delete_comment() {
          var comment;
         comment = $(this).attr("data-comment_id");
-         var button = $(this)
+         var button = $(this);
          $.get('/manage_comment/', {'comment_id':comment, 'action':'delete'}, function(data){
             button.parent().slideUp()
          });
@@ -76,17 +76,17 @@ $(document).ready(function(){
      $('.edit_comment').click(edit_comment)
      $('.delete_comment').click(delete_comment)
 
-     $('.delete_dream').click(function(e){
-        var dream_pk;
-        dream_pk = $(this).attr("data-dream_pk");
-         $.get('/manage_dream/', {'pk':dream_pk, 'action':'delete'}, function(data){
-            $('#dream_' + dream_pk).parent().hide();
+     $('.delete_post').click(function(e){
+        var post_pk;
+        post_pk = $(this).attr("data-post_pk");
+         $.get('/manage_post/', {'pk':post_pk, 'action':'delete'}, function(data){
+            $('#post_' + post_pk).parent().hide();
          });
      });
-    $('#delete_dream').click(function(e) {//on the Manage dream page
-        var dream_pk;
-        dream_pk = $(this).attr("data-dream_pk");
-         $.get('/manage_dream/', {'pk':dream_pk, 'action':'delete'}, function(data){
+    $('#delete_post').click(function(e) {//on the Manage post page
+        var post_pk;
+        post_pk = $(this).attr("data-post_pk");
+         $.get('/manage_post/', {'pk':post_pk, 'action':'delete'}, function(data){
             window.location = "/profile/";
          });
     });
